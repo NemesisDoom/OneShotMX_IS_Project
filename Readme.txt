@@ -15,3 +15,5 @@ Siempre usen una tabla de revisión y agreguenle los cambios a este readme.
 Versiones:
 v0.0 :
 Se crea el readme para especificar lo que se hara en este repositorio de Datos.
+v0.1 : 
+Se crea el proyecto en netBeans para empezar a trabajar en él
