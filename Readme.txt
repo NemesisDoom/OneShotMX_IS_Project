@@ -17,3 +17,10 @@ v0.0 :
 Se crea el readme para especificar lo que se hara en este repositorio de Datos.
 v0.1 : 
 Se crea el proyecto en netBeans para empezar a trabajar en él
+v0.1a :
+Se modifica el proyecto:
+ - Se agrega la clase PersonalData
+ - Se modificar la Interfaz 'DataAccessObject' a clase Abstracta.
+ - Se modifica la clase 'DataAccessObject'
+ - Se implementa el método addEntry de la case 'PersonAccessObject'
+Modificaciones por: Lt. Miguel Chan
