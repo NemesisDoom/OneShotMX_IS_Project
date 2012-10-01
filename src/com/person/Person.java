@@ -12,7 +12,7 @@ public final class Person {
     private String firstName;
     private String lastName;
     private int age;
-    private PersonalData personalData;
+    private ContactInformation contactInfo;
     
     public Person(){
         setFirstName("");
@@ -20,15 +20,11 @@ public final class Person {
         setAge(0);
     }
     
-    public Person(final String in_Name,
-            final String in_lastname,
-            final int in_Age,
-            final String in_EmailAddress,
-            final String in_Address){
+    public Person(String in_Name, String in_lastname, int in_Age){
         setFirstName(in_Name);
         setLastName(in_lastname);
         setAge(in_Age);
-        personalData = new PersonalData(in_Address,in_EmailAddress);
+        contactInfo = new ContactInformation();
     }
     
     public void setFirstName(final String in_FirstName){
@@ -49,23 +45,29 @@ public final class Person {
         }
     }
     
+    public void setContactInformation(ContactInformation inCntctInfo){
+        if(inCntctInfo != null){
+            contactInfo = inCntctInfo;
+        }
+    }
+    
     public String getName(){
         return getFirstName() + " " + getLastName();
     }
     
-    public PersonalData getPersonalData(){
-        return personalData;
+    public ContactInformation getContactInformation(){
+        return contactInfo;
     }
     
     @Override
     public String toString(){
-        PersonalData actualPersonalData = getPersonalData();
+        ContactInformation cntctInfo = getContactInformation();
         String personString = "";
         personString = "Name: "+getName()+"\n";
         personString += "Age: "+getAge()+"\n";
-        personString += "Cellphone: "+ actualPersonalData.getTelephone(PersonalData.CELLPHONE_NUMBER) + "\n";
-        personString += "Telephone: "+ actualPersonalData.getTelephone(PersonalData.HOME_NUMBER) + "\n";
-        personString += "Email Address: "+ actualPersonalData.getEmailAddress() + "\n";
+        personString += "Cellphone: "+ cntctInfo.getTelephoneNumber(ContactInformation.CELLPHONE_NUMBER) + "\n";
+        personString += "Telephone: "+ cntctInfo.getTelephoneNumber(ContactInformation.HOME_PHONE_NUMBER) + "\n";
+        personString += "Email Address: "+ cntctInfo.getEmailAddress() + "\n";
         return personString;
     }
 
@@ -92,7 +94,7 @@ public final class Person {
     
     public static void main(String args[]){
         Person person = new Person();
-        Person person2 = new Person("Miguel","Chan",21,"","");
+        Person person2 = new Person("Miguel","Chan",21);
         System.out.println(person);
         System.out.println(person2);
     }
