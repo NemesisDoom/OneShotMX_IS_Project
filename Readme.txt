@@ -24,3 +24,7 @@ Se modifica el proyecto:
  - Se modifica la clase 'DataAccessObject'
  - Se implementa el método addEntry de la case 'PersonAccessObject'
 Modificaciones por: Lt. Miguel Chan
+v0.1b :
+ -Se agrega la clase ContactInformation, eliminando los malentendidos con PersonalData
+ -Se cambia la clase Person para implementar ContactInformation como la informacion de contacto de la persona.
+Modificaciones por: Lt. Miguel Chan
