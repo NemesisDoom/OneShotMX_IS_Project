@@ -10,11 +10,13 @@
  */
 package com.visual;
 
+import com.controller.PersonManagementController;
+import com.person.ContactInformation;
+import com.person.Person;
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,10 +24,12 @@ import java.util.Locale;
  */
 public class PersonForm extends javax.swing.JFrame {
     private Date actualDate;
+    private PersonManagementController personController;
     
     /** Creates new form PersonManagement */
     public PersonForm() {
         initComponents();
+        personController = new PersonManagementController();
         actualDate = new Date();
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH);
         String format = dateFormat.format(actualDate);
@@ -186,6 +190,11 @@ public class PersonForm extends javax.swing.JFrame {
         );
 
         bttn_addPerson.setText("Agregar Persona");
+        bttn_addPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttn_addPersonActionPerformed(evt);
+            }
+        });
 
         bttn_cancel.setText("Cancelar");
         bttn_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +232,7 @@ public class PersonForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttn_addPerson)
@@ -238,6 +247,25 @@ private void bttn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 // TODO add your handling code here:
     dispose();
 }//GEN-LAST:event_bttn_cancelActionPerformed
+
+private void bttn_addPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_addPersonActionPerformed
+// TODO add your handling code here:
+    ContactInformation contactInfo = null;
+    contactInfo = personController.createContactInformation(txt_personAddress.getText(), 
+            txt_personEmailAddress.getText(), 
+            txt_personTelephoneNumber.getText(), 
+            txt_personCellphoneNumber.getText(), 
+            txt_personExtraCellphoneNumber.getText(), 
+            txt_personExtraTelephoneNumber.getText());
+    Person newPerson = null;
+    newPerson = personController.createPerson(txt_personFirstName.getText(), 
+            txt_personLastName.getText(), 
+            contactInfo, 
+            actualDate);
+    System.out.println(newPerson);
+    JOptionPane.showMessageDialog(this,"Se creado la persona "+txt_personFirstName.getText(),"¡Éxito!", JOptionPane.INFORMATION_MESSAGE);
+    dispose();
+}//GEN-LAST:event_bttn_addPersonActionPerformed
 
     /**
      * @param args the command line arguments

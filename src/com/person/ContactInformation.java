@@ -87,4 +87,8 @@ public final class ContactInformation {
         }
         return telephoneNumber;
     }
+    
+    public void addTelephoneNumber(String inTelephoneNumberKey,String inTelephoneNumberValue){
+        telephoneNumbers.put(inTelephoneNumberKey, inTelephoneNumberValue);
+    }
 }

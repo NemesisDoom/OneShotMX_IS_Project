@@ -14,17 +14,13 @@ import java.sql.ResultSet;
 public abstract class DataAccessObject<T> {
     private DatabaseConnectionManager connectionManager;
     
-    public DataAccessObject(String in_DatabaseUsername,
+    public DataAccessObject(String in_UserName,
             String in_DatabasePassword,
-            String in_DatabaseUrl,
+            String in_Url,
             String in_DatabaseName,
             int in_DatabasePort){
-        connectionManager = new DatabaseConnectionManager(in_DatabaseUsername,
-                in_DatabasePassword,
-                in_DatabaseUrl,
-                in_DatabaseName,
-                in_DatabasePort);
-        
+        connectionManager = new DatabaseConnectionManager(in_UserName,in_DatabasePassword,
+                in_Url,in_DatabaseName,in_DatabasePort);
     }
     
     public DatabaseConnectionManager getConnectionManager(){

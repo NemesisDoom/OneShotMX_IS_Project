@@ -22,11 +22,11 @@ public final class DatabaseConnectionManager {
     private String databaseName;
     private int port;
     
-    public DatabaseConnectionManager(final String in_UserName,
-            final String in_DatabasePassword,
-            final String in_Url,
-            final String in_DatabaseName,
-            final int in_DatabasePort){
+    public DatabaseConnectionManager(String in_UserName,
+            String in_DatabasePassword,
+            String in_Url,
+            String in_DatabaseName,
+            int in_DatabasePort){
         setUsername(in_UserName);
         setPassword(in_DatabasePassword);
         setUrl(in_Url);
