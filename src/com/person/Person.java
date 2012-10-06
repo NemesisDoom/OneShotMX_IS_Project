@@ -4,6 +4,8 @@
  */
 package com.person;
 
+import java.util.Date;
+
 /**
  *
  * @author Miguel
@@ -13,6 +15,7 @@ public final class Person {
     private String lastName;
     private int age;
     private ContactInformation contactInfo;
+    private Date registrationDate;
     
     public Person(){
         setFirstName("");
@@ -20,10 +23,11 @@ public final class Person {
         setAge(0);
     }
     
-    public Person(String in_Name, String in_lastname, int in_Age){
+    public Person(String in_Name, String in_lastname, int in_Age,Date rgstrtnDate){
         setFirstName(in_Name);
         setLastName(in_lastname);
         setAge(in_Age);
+        setRegistrationDate(rgstrtnDate);
         contactInfo = new ContactInformation();
     }
     
@@ -92,10 +96,13 @@ public final class Person {
         return age;
     }
     
-    public static void main(String args[]){
-        Person person = new Person();
-        Person person2 = new Person("Miguel","Chan",21);
-        System.out.println(person);
-        System.out.println(person2);
+    public void setRegistrationDate(Date rgstrtnDate){
+        if(rgstrtnDate != null){
+            registrationDate = rgstrtnDate;
+        }
+    }
+    
+    public Date getRegistrationDate(){
+        return registrationDate;
     }
 }

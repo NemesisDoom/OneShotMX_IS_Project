@@ -31,8 +31,8 @@ public abstract class DataAccessObject<T> {
         return connectionManager;
     }
     
-    public abstract int addObject(final T object);
-    public abstract int editObject(final T object);
-    public abstract ResultSet selectObject(final String sqlStatement);
-    public abstract int deleteObject(final T object);
+    public abstract int createObject(T object);
+    public abstract int updateObject(T object);
+    public abstract ResultSet readObject(String sqlStatement);
+    public abstract int deleteObject(T object);
 }
