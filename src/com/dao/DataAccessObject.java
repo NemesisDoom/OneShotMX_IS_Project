@@ -13,21 +13,22 @@ import java.sql.ResultSet;
  */
 public abstract class DataAccessObject<T> {
     private DatabaseConnectionManager connectionManager;
+    private String databaseTable;
     
-    public DataAccessObject(String in_UserName,
-            String in_DatabasePassword,
-            String in_Url,
-            String in_DatabaseName,
-            int in_DatabasePort){
-        connectionManager = new DatabaseConnectionManager(in_UserName,in_DatabasePassword,
-                in_Url,in_DatabaseName,in_DatabasePort);
+    public DataAccessObject(String in_databaseTable){
+        databaseTable = in_databaseTable;
+        connectionManager = DatabaseConnectionManager.getInstance();
+    }
+    
+    public String getDatabaseTable(){
+        return databaseTable;
     }
     
     public DatabaseConnectionManager getConnectionManager(){
         return connectionManager;
     }
     
-    public abstract int createObject(T object);
+    public abstract int insertObject(T object);
     public abstract int updateObject(T object);
     public abstract ResultSet readObject(String sqlStatement);
     public abstract int deleteObject(T object);

@@ -265,12 +265,16 @@ private void bttn_addPersonActionPerformed(java.awt.event.ActionEvent evt) {//GE
             txt_personCellphoneNumber.getText(), 
             txt_personExtraCellphoneNumber.getText(), 
             txt_personExtraTelephoneNumber.getText());
+    
+    
     Person newPerson = null;
     newPerson = personController.createPerson(txt_personFirstName.getText(), 
             txt_personLastName.getText(), 
             contactInfo, 
             actualDate);
     System.out.println(newPerson);
+    
+    
     JOptionPane.showMessageDialog(this,"Se creado la persona "+txt_personFirstName.getText(),"¡Éxito!", JOptionPane.INFORMATION_MESSAGE);
     personVisualController.addPersonToTable(newPerson);
     dispose();
