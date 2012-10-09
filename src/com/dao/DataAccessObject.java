@@ -4,7 +4,7 @@
  */
 package com.dao;
 
-import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 /**
@@ -12,6 +12,8 @@ import java.sql.ResultSet;
  * @author Miguel
  */
 public abstract class DataAccessObject<T> {
+    public static final int ERROR_EXECUTING_UPDATE = -1;
+    
     private DatabaseConnectionManager connectionManager;
     private String databaseTable;
     
@@ -30,6 +32,6 @@ public abstract class DataAccessObject<T> {
     
     public abstract int insertObject(T object);
     public abstract int updateObject(T object);
-    public abstract ResultSet readObject(String sqlStatement);
+    public abstract ArrayList<T> readObject(String[] tableValues);
     public abstract int deleteObject(T object);
 }
