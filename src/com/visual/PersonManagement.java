@@ -10,16 +10,20 @@
  */
 package com.visual;
 
+import com.controller.PersonVisualController;
+
 /**
  *
  * @author Miguel
  */
 public class PersonManagement extends javax.swing.JFrame {
     private PersonForm addPersonForm;
+    private PersonVisualController personVisualController;
     
     /** Creates new form PersonManagement */
     public PersonManagement() {
         initComponents();
+        personVisualController = new PersonVisualController(tbl_registeredPersons);
     }
 
     /** This method is called from within the constructor to
@@ -147,6 +151,11 @@ public class PersonManagement extends javax.swing.JFrame {
         bttn_modifyPerson.setText("Modificar Persona");
 
         bttn_deletePerson.setText("Eliminar Persona");
+        bttn_deletePerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttn_deletePersonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -215,12 +224,17 @@ public class PersonManagement extends javax.swing.JFrame {
 private void bttn_addPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_addPersonActionPerformed
 // TODO add your handling code here:
     if(addPersonForm == null){
-        addPersonForm = new PersonForm();
+        addPersonForm = new PersonForm(personVisualController);
     }
     if(!addPersonForm.isVisible()){
         addPersonForm.setVisible(true);
     }
 }//GEN-LAST:event_bttn_addPersonActionPerformed
+
+private void bttn_deletePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_deletePersonActionPerformed
+// TODO add your handling code here:
+    personVisualController.deletePerson(this);
+}//GEN-LAST:event_bttn_deletePersonActionPerformed
 
     /**
      * @param args the command line arguments

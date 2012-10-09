@@ -13,6 +13,7 @@ import java.util.Date;
  * @author Miguel
  */
 public class PersonManagementController {
+    
     public ContactInformation createContactInformation(String homeAddress,String emailAddress,
             String homeNumber,String cellphoneNumber,String extraCellphone,String extraHomePhone){
         

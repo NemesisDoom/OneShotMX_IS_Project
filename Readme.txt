@@ -28,3 +28,7 @@ v0.1b :
  -Se agrega la clase ContactInformation, eliminando los malentendidos con PersonalData
  -Se cambia la clase Person para implementar ContactInformation como la informacion de contacto de la persona.
 Modificaciones por: Lt. Miguel Chan
+v0.1e:
+ -Se agregan controladores, uno para la persona y otro para el manejo de todo lo que sea visual.
+ -Aun no exist ebase de datos.
+Modificaciones por: Lt. Miguel Chan

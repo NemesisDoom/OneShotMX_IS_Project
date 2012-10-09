@@ -11,6 +11,7 @@
 package com.visual;
 
 import com.controller.PersonManagementController;
+import com.controller.PersonVisualController;
 import com.person.ContactInformation;
 import com.person.Person;
 import java.text.DateFormat;
@@ -25,17 +26,24 @@ import javax.swing.JOptionPane;
 public class PersonForm extends javax.swing.JFrame {
     private Date actualDate;
     private PersonManagementController personController;
+    private PersonVisualController personVisualController;
     
     /** Creates new form PersonManagement */
     public PersonForm() {
         initComponents();
+        
         personController = new PersonManagementController();
+        
         actualDate = new Date();
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH);
         String format = dateFormat.format(actualDate);
         txt_registrationDate.setText(format);
     }
 
+    public PersonForm(PersonVisualController inPersonVisualController){
+        this();
+        personVisualController = inPersonVisualController;
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -264,6 +272,7 @@ private void bttn_addPersonActionPerformed(java.awt.event.ActionEvent evt) {//GE
             actualDate);
     System.out.println(newPerson);
     JOptionPane.showMessageDialog(this,"Se creado la persona "+txt_personFirstName.getText(),"¡Éxito!", JOptionPane.INFORMATION_MESSAGE);
+    personVisualController.addPersonToTable(newPerson);
     dispose();
 }//GEN-LAST:event_bttn_addPersonActionPerformed
 
