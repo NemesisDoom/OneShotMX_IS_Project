@@ -25,15 +25,23 @@ public class PersonAccessObject extends DataAccessObject<Person> {
     private static final String LASTNAME_COL = "PersonLastName";
     private static final String REGISTRY_DATE_COL = "RegistryDate";
 
+    private PersonSQLGenerator sqlGenerator;
+    
     public PersonAccessObject(String in_databaseTable) {
         super(in_databaseTable);
+        sqlGenerator = new PersonSQLGenerator(
+                in_databaseTable,
+                ID_COL,
+                FIRSTNAME_COL,
+                LASTNAME_COL,
+                REGISTRY_DATE_COL);
     }
 
     @Override
     public int insertObject(Person object) {
         DatabaseConnectionManager connManager = null;
         try {
-            String sqlQuery = createInsertQuery(object);
+            String sqlQuery = sqlGenerator.createInsertStatement(object);
             connManager = getConnectionManager();
             connManager.openConnection();
             Connection dbConnection = connManager.getConnection();
@@ -49,15 +57,28 @@ public class PersonAccessObject extends DataAccessObject<Person> {
     }
 
     @Override
-    public int updateObject(Person object) {
+    public int updateObject(Person prevObject,Person newObject) {
+        DatabaseConnectionManager connManager = getConnectionManager();
+        String updateQuery = sqlGenerator.createUpdateStatement(prevObject, newObject);
+        connManager.openConnection();
+        Connection dbConnection = connManager.getConnection();
+        try{
+        Statement updateStatement = dbConnection.createStatement();
+        int result = updateStatement.executeUpdate(updateQuery);
+        return result;
+        }catch(SQLException ex){
+        
+        }finally{
+            connManager.closeConnection();
+        }
         return ERROR_EXECUTING_UPDATE;
     }
 
     @Override
     public int deleteObject(Person object) {
-        DatabaseConnectionManager connManager = null;
+        DatabaseConnectionManager connManager = getConnectionManager();
         try {
-            String sqlDeleteQuery = createDeleteQuery(object);
+            String sqlDeleteQuery = sqlGenerator.createDeleteStatement(object);
             connManager.openConnection();
             Connection dbConnection = connManager.getConnection();
             Statement deleteStatement = dbConnection.createStatement();
@@ -72,11 +93,11 @@ public class PersonAccessObject extends DataAccessObject<Person> {
     }
 
     @Override
-    public ArrayList<Person> readObject(String[] tableValues) {
+    public ArrayList<Person> selectDataFromDatabase(String[] tableValues) {
         ArrayList<Person> personsList = new ArrayList<Person>();
         DatabaseConnectionManager connManager = getConnectionManager();
         try {
-            String selectQuery = createSelectQuery(tableValues);
+            String selectQuery = sqlGenerator.createSelectStatement(tableValues, null);
             connManager.openConnection();
             Connection dbConnection = connManager.getConnection();
             Statement selectStatement = dbConnection.createStatement();
@@ -110,6 +131,7 @@ public class PersonAccessObject extends DataAccessObject<Person> {
         return personsLists;
     }
 
+    /*
     private String createSelectQuery(String[] values) {
         String selectQuery = "SELECT ";
         selectQuery += values[0];
@@ -137,5 +159,5 @@ public class PersonAccessObject extends DataAccessObject<Person> {
         deleteSQLQuery += "WHERE " + FIRSTNAME_COL + " = '" + inDeletingPerson.getFirstName() + "'";
         deleteSQLQuery += " && " + LASTNAME_COL + " = '" + inDeletingPerson.getLastName() + "';";
         return deleteSQLQuery;
-    }
+    }*/
 }

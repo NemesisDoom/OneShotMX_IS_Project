@@ -6,6 +6,7 @@ package com.dao;
 
 import com.person.ContactInformation;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,17 +24,17 @@ public class ContactInformationAccessObject extends DataAccessObject<ContactInfo
     }
 
     @Override
-    public int updateObject(ContactInformation object) {
+    public int updateObject(ContactInformation prevObject,ContactInformation newObject) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    public ResultSet readObject(String sqlStatement) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    
     @Override
     public int deleteObject(ContactInformation object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<ContactInformation> selectDataFromDatabase(String[] tableValues) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

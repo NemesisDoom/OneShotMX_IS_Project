@@ -4,10 +4,12 @@
  */
 package com.controller;
 
+import com.dao.PersonAccessObject;
 import com.person.Person;
 import com.visual.PersonManagement;
 import com.visual.PersonTableModel;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -18,32 +20,39 @@ import javax.swing.JTable;
  * @author Miguel
  */
 public class PersonVisualController {
+    
     private final static String FIRSTNAME_COLUMN = "First name";
     private final static String LASTNAME_COLUMN = "Last name";
     private final static String REGISTRY_DATE_COLUMN = "Register Date";
     private final static String ID_COLUMN = "Person ID";
     
     private JTable personTable;
+    private PersonAccessObject personDAO;
     
     public PersonVisualController(JTable prsnTable){
+        personDAO = new PersonAccessObject(PersonManagementController.PERSON_TABLE);
+        
         personTable = prsnTable;
         initializePersonTable(personTable);
     }
     
+    public void reloadPersonTable(){
+    }
+    
     public final void initializePersonTable(JTable inoutPersonTable){
         PersonTableModel tableModel = new PersonTableModel();
-        tableModel.addColumn(ID_COLUMN);
+        /*tableModel.addColumn(ID_COLUMN);*/
         tableModel.addColumn(FIRSTNAME_COLUMN);
         tableModel.addColumn(LASTNAME_COLUMN);
         tableModel.addColumn(REGISTRY_DATE_COLUMN);
-        
         personTable.setModel(tableModel);
-    }
-    
-    private String getRegisterDateString(Date inRegisterDate){
-        DateFormat dateFormatter = DateFormat.getDateInstance();
-        String registerDate = dateFormatter.format(inRegisterDate);
-        return registerDate;
+        
+        String[] personView = new String[1];
+        personView[0] = "*";
+        ArrayList<Person> personList = personDAO.selectDataFromDatabase(personView);
+        for(Person person : personList){
+            addPersonToTable(person);
+        }
     }
     
     public void addPersonToTable(Person inPerson){
@@ -54,7 +63,7 @@ public class PersonVisualController {
         String registryDate = getRegisterDateString(inPerson.getRegistrationDate());
         
         Vector<String> rowData = new Vector<String>();
-        rowData.add("ID");
+        //rowData.add("ID");
         rowData.add(prsnFirstName);
         rowData.add(prsnLastName);
         rowData.add(registryDate);
@@ -82,5 +91,11 @@ public class PersonVisualController {
     private void deletePersonFromTable(int inSelectedIndex){
         PersonTableModel tableModel = (PersonTableModel)personTable.getModel();
         tableModel.removeRow(inSelectedIndex);
+    }
+    
+    private String getRegisterDateString(Date inRegisterDate){
+        DateFormat dateFormatter = DateFormat.getDateInstance();
+        String registerDate = dateFormatter.format(inRegisterDate);
+        return registerDate;
     }
 }

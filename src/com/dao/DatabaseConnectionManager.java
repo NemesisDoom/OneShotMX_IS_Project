@@ -107,9 +107,9 @@ public final class DatabaseConnectionManager {
     }
 
     private String createDatabaseFullString() {
-        String databaseFullString = getUrl();
-        databaseFullString += ":" + getDatabasePort();
-        databaseFullString += "/" + getDatabaseName();
+        String databaseFullString = "jdbc:postgresql:";
+        databaseFullString += "//"+getUrl() + ":"+getDatabasePort();
+        databaseFullString += "/" +getDatabaseName();
         return databaseFullString;
     }
 }
