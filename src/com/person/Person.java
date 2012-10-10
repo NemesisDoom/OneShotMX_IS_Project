@@ -21,7 +21,7 @@ public final class Person {
         setLastName("");
     }
     
-    public Person(String in_Name, String in_lastname, int in_Age,Date rgstrtnDate){
+    public Person(String in_Name, String in_lastname, Date rgstrtnDate){
         setFirstName(in_Name);
         setLastName(in_lastname);
         setRegistrationDate(rgstrtnDate);
@@ -53,28 +53,11 @@ public final class Person {
     public ContactInformation getContactInformation(){
         return contactInfo;
     }
-    
-    @Override
-    public String toString(){
-        ContactInformation cntctInfo = getContactInformation();
-        String personString = "";
-        personString = "Name: "+getName()+"\n";
-        personString += "Cellphone: "+ cntctInfo.getTelephoneNumber(ContactInformation.CELLPHONE_NUMBER) + "\n";
-        personString += "Telephone: "+ cntctInfo.getTelephoneNumber(ContactInformation.HOME_PHONE_NUMBER) + "\n";
-        personString += "Email Address: "+ cntctInfo.getEmailAddress() + "\n";
-        return personString;
-    }
 
-    /**
-     * @return the firstName
-     */
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * @return the lastName
-     */
     public String getLastName() {
         return lastName;
     }
