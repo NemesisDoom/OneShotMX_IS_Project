@@ -11,6 +11,7 @@ import java.util.Hashtable;
  * @author Miguel
  */
 public final class ContactInformation {
+
     public static final String HOME_PHONE_NUMBER = "Home Number";
     public static final String WORK_PHONE_NUMBER = "Work Number";
     public static final String CELLPHONE_NUMBER = "Cellphone Number";
@@ -18,15 +19,11 @@ public final class ContactInformation {
     public static final String ADDITIONAL_HOME_NUMBER = "Additional Home Number";
     
     private String homeAddress;
-    private String homeCity;
-    private int zipcode;
     private String emailAddress;
     private Hashtable<String,String> telephoneNumbers;
     
     public ContactInformation(){
         setHomeAddress("");
-        setHomeCity("");
-        setZipCode(0);
         setEmailAddress("");
         initializePhonebook();
     }
@@ -41,39 +38,19 @@ public final class ContactInformation {
     }
     
     public void setHomeAddress(String inHomeAddress){
-        if(!inHomeAddress.isEmpty()){
+        if(inHomeAddres != null){
             homeAddress = inHomeAddress;
         }
     }
-    
-    public void setHomeCity(String inHomeCity){
-        if(!inHomeCity.isEmpty()){
-            homeCity = inHomeCity;
-        }
-    }
-    
-    public void setZipCode(int inZipCode){
-        if(inZipCode > 0){
-            zipcode = inZipCode;
-        }
-    }
-    
+
     public void setEmailAddress(String inEmailAddress){
-        if(!inEmailAddress.isEmpty()){
+        if(inEmailAddress != null){
             emailAddress = inEmailAddress;
         }
     }
     
     public String getHomeAddress(){
         return homeAddress;
-    }
-    
-    public int getZipCode(){
-        return zipcode;
-    }
-    
-    public String getHomeCity(){
-        return homeCity;
     }
     
     public String getEmailAddress(){
