@@ -79,8 +79,8 @@ public class DatabaseAcceser {
                         addConfigurationValue(DATABASE_PASSWORD,getLineValue(actualLine));
                     } else if (actualLine.contains(DATABASE_USERNAME)) {
                         addConfigurationValue(DATABASE_USERNAME,getLineValue(actualLine));
-                    } else if (actualLine.contains(DATABASE_NAME)) {
-                        addConfigurationValue(DATABASE_NAME,getLineValue(actualLine));
+                    } else if (actualLine.contains(DATABASE_PORT)) {
+                        addConfigurationValue(DATABASE_PORT,getLineValue(actualLine));
                     } else if (actualLine.contains(DATABASE_HOST)) {
                         addConfigurationValue(DATABASE_HOST,getLineValue(actualLine));
                     } else if (actualLine.contains(DATABASE_NAME)) {
