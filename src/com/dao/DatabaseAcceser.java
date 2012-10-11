@@ -76,20 +76,15 @@ public class DatabaseAcceser {
                     foundDatabaseToken = true;
                 } else if (foundDatabaseToken) {
                     if (actualLine.contains(DATABASE_PASSWORD)) {
-                        String password = getLineValue(actualLine);
-                        databaseValues.put(DATABASE_PASSWORD, password);
+                        addConfigurationValue(DATABASE_PASSWORD,getLineValue(actualLine));
                     } else if (actualLine.contains(DATABASE_USERNAME)) {
-                        String username = getLineValue(actualLine);
-                        databaseValues.put(DATABASE_USERNAME, username);
-                    } else if (actualLine.contains(DATABASE_PORT)) {
-                        String port = getLineValue(actualLine);
-                        databaseValues.put(DATABASE_PORT, port);
-                    } else if (actualLine.contains(DATABASE_HOST)) {
-                        String hostLine = getLineValue(actualLine);
-                        databaseValues.put(DATABASE_HOST, hostLine);
+                        addConfigurationValue(DATABASE_USERNAME,getLineValue(actualLine));
                     } else if (actualLine.contains(DATABASE_NAME)) {
-                        String database = getLineValue(actualLine);
-                        databaseValues.put(DATABASE_NAME, database);
+                        addConfigurationValue(DATABASE_NAME,getLineValue(actualLine));
+                    } else if (actualLine.contains(DATABASE_HOST)) {
+                        addConfigurationValue(DATABASE_HOST,getLineValue(actualLine));
+                    } else if (actualLine.contains(DATABASE_NAME)) {
+                        addConfigurationValue(DATABASE_NAME,getLineValue(actualLine));
                     }
                 }
             }
@@ -99,6 +94,14 @@ public class DatabaseAcceser {
         return databaseValues;
     }
 
+    private void addConfigurationValue(
+        String inConfigurationKey,
+        String inConfigurationValue,
+        Hashtable<String,String> inoutConfigurationTable
+        ){
+            inoutConfigurationFile.put(inConfigurationKey,inConfigurationValue);
+    }
+        
     private String getLineValue(String actualLine) {
         String value = "";
         int equalIndex = actualLine.indexOf("=");
